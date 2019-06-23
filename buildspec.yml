@@ -1,0 +1,23 @@
+version: 0.2
+environment_variables:
+    plaintext:
+        S3_BUCKET: "lolwnerawsclient"
+phases:
+    install:
+        commands:
+            - echo Installing source NPM dependencies...
+            - npm install
+            - npm install -g @angular/cli
+    build:
+        commands:
+            - echo Build started on `date`
+            - ng build
+    post_build:
+         commands:
+            - aws s3 cp dist s3://${S3_BUCKET} --recursive
+            - echo Build completed on `date`
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'dist*'
+    discard-paths: yes
