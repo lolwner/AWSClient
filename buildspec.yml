@@ -4,8 +4,8 @@ environment_variables:
         S3_BUCKET: "lolwnerawsclient"
 phases:
     install:
-    runtime-versions:
-          nodejs: 10
+        runtime-versions:
+            nodejs: 10
         commands:
             - echo Installing source NPM dependencies...
             - npm install
